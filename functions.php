@@ -53,11 +53,11 @@ class Functions
                 'маршрутка',
                 'маршруту'
             ],
-            'Автобусы с числом мест сидения до 20 вкл.' => [
+            'Автобусы с числом мест сидения до 16 вкл.' => [
                 'мест до 16',
                 'до 16 мест'
             ],
-            'Автобусы с числом мест сидения свыше 20' => [
+            'Автобусы с числом мест сидения свыше 16' => [
                 'мест более 16',
                 'более 16 мест'
             ],
@@ -775,11 +775,11 @@ class Functions
                 'min' => 4227,
                 'max' => 7609,
             ],
-            'Автобусы с числом мест сидения до 20 вкл.' => [
+            'Автобусы с числом мест сидения до 16 вкл.' => [
                 'min' => 2246,
                 'max' => 4044,
             ],
-            'Автобусы с числом мест сидения свыше 20' => [
+            'Автобусы с числом мест сидения свыше 16' => [
                 'min' => 2807,
                 'max' => 5053,
             ],
@@ -808,7 +808,7 @@ class Functions
         return "$4 == ".'"'.$city.'"';
     }
 
-  public static function mb_ucfirst($string, $encoding = 'UTF-8') {
+    public static function mb_ucfirst($string, $encoding = 'UTF-8') {
         $firstChar = mb_strtoupper(mb_substr($string, 0, 1, $encoding), $encoding);
         return $firstChar . mb_substr($string, 1, mb_strlen($string, $encoding), $encoding);
     }
@@ -818,7 +818,7 @@ class Functions
         return $title;
     }
 
-    public static function  changeAnotherCity($city)
+    public static function changeAnotherCity($city)
     {
         $searchArray = [
             'Иностранное государство' => [

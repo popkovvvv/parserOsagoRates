@@ -24,6 +24,8 @@ class Parser
                     'KITWebservice.txt' => 'KITWebservice.yml',
                     'UgoriaWebservice.txt' => 'UgoriaWebservice.yml',
                     'OSKWebservice.txt' => 'OSKWebservice.yml',
+                    'Energogarant.txt' => 'Energogarant.yml',
+
                 ];
 
                 self::structuredFile($file,$ymls[$file]);
@@ -70,10 +72,9 @@ class Parser
                     || mb_strpos(mb_strtolower($region), 'осмотра') !== false
                     || mb_strpos(mb_strtolower($region), 'техосмотра') !== false
                     || mb_strpos(mb_strtolower($region), 'cледующих') !== false
-                    || mb_strpos(mb_strtolower($city), 'cледования') !== false){
+                    || mb_strpos(mb_strtolower($region), 'cледования') !== false){
 
                     $region = Functions::changeAnotherCity($region);
-
                 }
 
                 //в $city находятся регионы и города в некоторых строховых компаниях
@@ -83,12 +84,9 @@ class Parser
                     if (mb_strpos(mb_strtolower($city), 'иностранных') !== false
                         || mb_strpos(mb_strtolower($city), 'осмотра') !== false
                         || mb_strpos(mb_strtolower($city), 'техосмотра') !== false
-                        || mb_strpos(mb_strtolower($region), 'cледующих') !== false
+                        || mb_strpos(mb_strtolower($city), 'cледующих') !== false
                         || mb_strpos(mb_strtolower($city), 'cледования') !== false){
-                        $city = Functions::changeAnotherCity($city);
-                        $region = $city;
-
-
+                        $region = Functions::changeAnotherCity($city);
                     }
                     if ($city == 'Все города и населенные пункты'){
                         $city = $region;
@@ -120,7 +118,13 @@ class Parser
                         $city = "Ленинградская область";
                         break;
                     case "Московсковская область":
-                        $city = "Московсковская область";
+                        $city = "Московская область";
+                        break;
+                    case "Владимирская область":
+                        $city = str_replace('Г усь-Хрустальный','Гусь-Хрустальный', $city);
+                        break;
+                    case "Ставропольский край":
+                        $city = str_replace('Минеральные Воды','Минеральные воды', $city);
                         break;
                 }
 
@@ -220,7 +224,7 @@ class Parser
                             }
                             $result[$title]['base'] = $minAndMax['max'];
                             $result[$title]['region'] = 1;
-                            //определение коэфицента
+                            //определение коэффицента
                             if ($title == 'Мотоциклы и мотороллеры'){
                                 $result[$title]['trailer'] = 1.16;
                             }elseif ($title == 'Грузовые а/м с разрешенной массой до 16 т вкл.'){
@@ -237,7 +241,7 @@ class Parser
                         if ($title != "Легковые а/м, юрики" && $title != "Легковые а/м, физики"){
                             $result[$title]['base'] = $minAndMax['max'];
                             $result[$title]['region'] = 1;
-                            //определение коэфицента
+                            //определение коэффицента
                             if ($title == 'Мотоциклы и мотороллеры'){
                                 $result[$title]['trailer'] = 1.16;
                             }elseif ($title == 'Грузовые а/м с разрешенной массой до 16 т вкл.'){
