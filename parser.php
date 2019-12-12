@@ -114,6 +114,9 @@ class Parser
                     case "Ханты-Мансийский автономный округ - Югра":
                         $region = "Ханты-Мансийский автономный округ";
                         break;
+                    case "Ханты-Мансийский автономный округ -Югра":
+                        $region = "Ханты-Мансийский автономный округ";
+                        break;
                     case "Ленинградская область":
                         $city = "Ленинградская область";
                         break;
@@ -127,6 +130,9 @@ class Parser
                         $city = str_replace('Минеральные Воды','Минеральные воды', $city);
                         break;
                 }
+
+                $city = str_replace('Прочие    города    и населенные пункты','Прочие города и населенные пункты', $city);
+
 
 
                 $regionRates = Functions::validateRegion($regionRates,$regionId,$regionO);
@@ -152,7 +158,7 @@ class Parser
             }
         }
 
-        self::toYaml($data,$fileToSave);
+        $this->toYaml($data,$fileToSave);
     }
 
 

@@ -743,7 +743,7 @@ class Functions
         $osagoRegion = self::arrayOsago();
         if (!isset($osagoRegion[$region][$city])){
             if ($city != 'прочие города и населенные пункты'){
-                file_put_contents('logs/currectTerritory.txt', var_export([$file,"Регион:" .$region. " Город:" ."$city"], 1)."\n", FILE_APPEND);
+                file_put_contents('logs/dontFindCurrect.txt', var_export([$file,"Регион: " .$region. " Город: " ."$city"], 1)."\n", FILE_APPEND);
             }
         }
     }
